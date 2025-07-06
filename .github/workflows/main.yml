@@ -28,7 +28,7 @@ jobs:
 
       - name: Deploy Helm Chart
         run: |
-          helm upgrade --install myapp ./myapp \
+          helm upgrade --install myapp ./minikube-sampleapp \
             --namespace default \
             --create-namespace
 
