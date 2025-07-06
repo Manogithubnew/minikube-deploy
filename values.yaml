@@ -40,11 +40,10 @@ securityContext: {}
   # runAsUser: 1000
 
 service:
+  name: myapp
   type: ClusterIP
   port: 80
 
-service:
-  name: myapp
 
 ingress:
   enabled: false
