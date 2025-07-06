@@ -28,7 +28,6 @@ jobs:
 
       - name: Deploy with Helm
         run: |
-          cd minikube-sampleapp
           helm upgrade --install myapp . --values values.yaml
 
 
