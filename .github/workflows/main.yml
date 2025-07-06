@@ -17,7 +17,7 @@ jobs:
       uses: docker/setup-buildx-action@v3
 
     - name: Set up Minikube
-      uses: medyagh/setup-minikube@v0.3.4
+      uses: medyagh/setup-minikube@v0.0.13  # ✅ Updated version here
 
     - name: Wait for cluster to be ready
       run: kubectl get pods -A
