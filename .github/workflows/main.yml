@@ -26,11 +26,11 @@ jobs:
       - name: Wait for cluster to be ready
         run: kubectl get pods -A
 
-      - name: Deploy Helm Chart
+      - name: Deploy with Helm
         run: |
-          helm upgrade --install myapp ./minikube-sampleapp \
-            --namespace default \
-            --create-namespace
+          cd minikube-sampleapp
+          helm upgrade --install myapp . --values values.yaml
+
 
       - name: Get service info
         run: kubectl get svc
