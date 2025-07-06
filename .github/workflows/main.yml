@@ -35,4 +35,4 @@ jobs:
         run: kubectl get svc
 
       - name: Print Service URL
-        run: minikube service myapp-minikube-sampleapp --url
+        run: minikube service myapp --url
