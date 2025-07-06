@@ -4,38 +4,36 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   deploy:
     runs-on: self-hosted
 
     env:
-      HOME: /home/githubrunner
-      MINIKUBE_HOME: /home/githubrunner/minikube
+      MINIKUBE_HOME: /home/githubrunner/minikube  # 👈 Use a path your user owns
 
     steps:
-    - name: Checkout Code
-      uses: actions/checkout@v3
+      - name: Checkout Code
+        uses: actions/checkout@v3
 
-    - name: Set up Docker
-      uses: docker/setup-buildx-action@v3
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v3
 
-    - name: Set up Minikube
-      uses: medyagh/setup-minikube@v0.0.13
-      env:
-        MINIKUBE_HOME: /home/githubrunner/minikube
+      - name: Set up Minikube
+        uses: medyagh/setup-minikube@v0.0.13
 
-    - name: Wait for cluster to be ready
-      run: kubectl get pods -A
+      - name: Wait for cluster to be ready
+        run: kubectl get pods -A
 
-    - name: Deploy Helm Chart
-      run: |
-        helm upgrade --install myapp ./myapp \
-          --namespace default \
-          --create-namespace
+      - name: Deploy Helm Chart
+        run: |
+          helm upgrade --install myapp ./myapp \
+            --namespace default \
+            --create-namespace
 
-    - name: Get service info
-      run: kubectl get svc
+      - name: Get service info
+        run: kubectl get svc
 
-    - name: Print Service URL
-      run: minikube service myapp --url
+      - name: Print Service URL
+        run: minikube service myapp --url
