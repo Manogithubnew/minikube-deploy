@@ -30,3 +30,6 @@ jobs:
 
     - name: Get service info
       run: kubectl get svc
+
+    - name: Print Service URL
+      run: minikube service myapp --url
